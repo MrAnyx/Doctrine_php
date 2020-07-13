@@ -1,0 +1,16 @@
+{
+    "name": "mranyx/test",
+    "description": "try to implement doctrine",
+    "license": "MIT",
+    "require": {
+        "doctrine/orm": "^2.7",
+        "symfony/var-dumper": "^5.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src"
+        }
+    }
+
+
+}
