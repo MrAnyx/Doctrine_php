@@ -1,17 +1,20 @@
 <?php
 
 use App\Entity\User;
+use App\Entity\Group;
 
 require __DIR__ . "/vendor/autoload.php";
 require __DIR__ . "/bootstrap.php";
 
-$users = $entityManager->getRepository(User::class)->findAll();
+$whoops = new \Whoops\Run;
+$whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
+$whoops->register();
 
 
-echo "<ul>";
-foreach ($users as $user) {
-   echo "<li>" . $user->getUsername() . "</li>";
-}
-echo "</ul>";
+$user = $entityManager->getRepository(User::class)->findAll();
+
+
+dd($user->getGroup());
+
 
 

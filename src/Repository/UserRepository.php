@@ -9,7 +9,8 @@ class UserRepository extends EntityRepository{
 
     public function findAll(){
         return $this->getEntityManager()
-            ->createQuery('SELECT u FROM App\Entity\User u ORDER BY u.username ASC')
-            ->getResult();
+            ->createQuery('SELECT u FROM App\Entity\User u')
+            ->setMaxResults(1)
+            ->getResult()[0];
     }
 }

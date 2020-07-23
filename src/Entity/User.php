@@ -1,88 +1,62 @@
 <?php
 
-
 namespace App\Entity;
+
+use App\Entity\Group;
 
 /**
  * @Entity(repositoryClass="App\Repository\UserRepository")
  */
-class User {
-
-   /**
+class User
+{
+    /**
     * @Id
-    * @Column(type="integer")
+    * @Column(type="integer", nullable=false)
     * @GeneratedValue
     */
    private $id;
 
-   /**
-    * @Column(type="string", length=50)
-    */
-   private $username;
+    /**
+     * Many Users have Many Groups.
+     * @ManyToMany(targetEntity="Group", inversedBy="users")
+     * @JoinTable(name="users_groups")
+     */
+    private $groups;
 
-   /**
-    * @Column(type="string", length=255)
-    */
-   private $password;
+    public function __construct() {
+        $this->groups = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
+    public function addGroup(Group $group)
+    {
+        $group->addUser($this);
+        $this->groups[] = $group;
+    }
 
-   /**
-    * Get the value of username
-    */ 
-   public function getUsername()
-   {
-      return $this->username;
-   }
+    public function getGroup()
+    {
+        return $this->groups;
+    }
 
-   /**
-    * Set the value of username
-    *
-    * @return  self
-    */ 
-   public function setUsername($username)
-   {
-      $this->username = $username;
+    /**
+     * Get the value of id
+     */ 
+    public function getId()
+    {
+        return $this->id;
+    }
 
-      return $this;
-   }
+    /**
+     * Set the value of id
+     *
+     * @return  self
+     */ 
+    public function setId($id)
+    {
+        $this->id = $id;
 
-   /**
-    * Get the value of id
-    */ 
-   public function getId()
-   {
-      return $this->id;
-   }
+        return $this;
+    }
 
-   /**
-    * Set the value of id
-    *
-    * @return  self
-    */ 
-   public function setId($id)
-   {
-      $this->id = $id;
-
-      return $this;
-   }
-
-   /**
-    * Get the value of password
-    */ 
-   public function getPassword()
-   {
-      return $this->password;
-   }
-
-   /**
-    * Set the value of password
-    *
-    * @return  self
-    */ 
-   public function setPassword($password)
-   {
-      $this->password = $password;
-
-      return $this;
-   }
 }
+

@@ -4,7 +4,8 @@
     "license": "MIT",
     "require": {
         "doctrine/orm": "^2.7",
-        "symfony/var-dumper": "^5.1"
+        "symfony/var-dumper": "^5.1",
+        "filp/whoops": "^2.7"
     },
     "autoload": {
         "psr-4": {
