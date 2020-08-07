@@ -11,10 +11,10 @@ $whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
 $whoops->register();
 
 
-$user = $entityManager->getRepository(User::class)->findAll();
+// $user = $entityManager->getRepository(User::class)->findAll();
+// dd($user->getGroup());
 
+$user = new User();
 
-dd($user->getGroup());
-
-
-
+$entityManager->persist($user);
+$entityManager->flush();

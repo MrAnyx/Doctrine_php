@@ -4,13 +4,16 @@ namespace App\Entity;
 
 use App\Entity\User;
 
-/** @Entity */
+/** 
+ * @Entity(repositoryClass="App\Repository\GroupRepository")
+ * @Table(name="Group")
+ */
 class Group
 {
     /**
     * @Id
     * @Column(type="integer", nullable=false)
-    * @GeneratedValue
+    * @GeneratedValue(strategy="UUID")
     */
    private $id;
 

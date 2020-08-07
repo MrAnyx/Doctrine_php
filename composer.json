@@ -5,7 +5,9 @@
     "require": {
         "doctrine/orm": "^2.7",
         "symfony/var-dumper": "^5.1",
-        "filp/whoops": "^2.7"
+        "filp/whoops": "^2.7",
+        "ramsey/uuid-doctrine": "^1.6",
+        "ramsey/uuid": "^4.1"
     },
     "autoload": {
         "psr-4": {

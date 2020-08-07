@@ -3,17 +3,24 @@
 namespace App\Entity;
 
 use App\Entity\Group;
+use Ramsey\Uuid\UuidInterface;
+use Ramsey\Uuid\Doctrine\UuidGenerator;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @Entity(repositoryClass="App\Repository\UserRepository")
+ * @Table(name="User")
  */
 class User
 {
     /**
-    * @Id
-    * @Column(type="integer", nullable=false)
-    * @GeneratedValue
-    */
+     * @var string
+     *
+     * @Id
+     * @Column(name="id", type="string", length=36)
+     * @GeneratedValue(strategy="CUSTOM")
+     * @CustomIdGenerator(class="App\IdGenerator")
+     */
    private $id;
 
     /**
@@ -24,7 +31,7 @@ class User
     private $groups;
 
     public function __construct() {
-        $this->groups = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->groups = new ArrayCollection();
     }
 
     public function addGroup(Group $group)

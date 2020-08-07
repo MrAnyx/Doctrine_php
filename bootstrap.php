@@ -3,6 +3,7 @@
 // bootstrap.php
 require_once "vendor/autoload.php";
 
+use Doctrine\DBAL\Types\Type;
 use Doctrine\ORM\Tools\Setup;
 use Doctrine\ORM\EntityManager;
 
@@ -13,9 +14,10 @@ $isDevMode = false;
 $dbParams = array(
     'driver'   => 'pdo_mysql',
     'user'     => 'root',
-    'password' => '',
+    'password' => 'root',
     'dbname'   => 'doctrine',
 );
 
 $config = Setup::createAnnotationMetadataConfiguration($paths, $isDevMode);
 $entityManager = EntityManager::create($dbParams, $config);
+
